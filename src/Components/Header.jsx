@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
 
-export default function Header() {
+export default function Header({ children }) {
   return (
-    <div className="bg-green-900 flex items-center justify-between  px-[15px] inset-0 text-white fixed h-16">
+    <>
+      <div className="bg-green-900 flex items-center justify-between  px-[15px] inset-0 text-white fixed h-16">
         <div className="w-52 md:w-auto">
             <Link to="/" className="inline-block px-[9.5px] py-1.5 rounded-sm cursor-pointer no-underline border-solid hover:border border-white">
                 <img src="/images/logo-white.png" alt="Logo" className="hidden md:block h-[26px] my-px" />
@@ -18,17 +19,19 @@ export default function Header() {
       </div>
 
       <div className="w-[200px] shrink-0 flex justify-end mr-7.5">
-            <Link className="text-white flex items-center px-[9.5px] py-1.5 rounded-sm cursor-pointer no-underline border border-transparent hover:border-white" to="/">
+            <Link className="text-white flex items-center px-[9.5px] py-1.5 rounded-sm cursor-pointer no-underline border border-transparent hover:border-white" to="/orders">
 
             <span className="block text-base font-bold">Orders</span>
             </Link>
 
-            <Link className="text-white flex items-center relative px-[9.5px] py-1.5 rounded-sm cursor-pointer no-underline border-solid hover:border border-white" to="/">
+            <Link className="text-white flex items-center relative px-[9.5px] py-1.5 rounded-sm cursor-pointer no-underline border-solid hover:border border-white" to="/checkout">
             <img className="w-[38px]" src="/images/icons/cart-icon.png" />
             <div className="text-green-900 text-base font-bold absolute top-[4.5px] right-[50px] w-[26px] text-center">3</div>
             <div className="ml-[5px] text-base font-bold">Cart</div>
             </Link>
       </div>
     </div>
+    {children}
+    </>
   );
 }
