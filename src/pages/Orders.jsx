@@ -28,10 +28,14 @@ export default function Orders() {
   }, []);
 
   return (
-        <div>
-            {orders.map(pro =>(
+        <div className="max-w-[850px] mt-[90px] mb-[100px] mx-auto ">
+            <div className="font-bold mb-[25px] text-2xl"> Your Orders</div>
+            <div className="grid grid-cols-1 gap-y-[50px] ">
+                {orders.map(pro =>(
                 <OrdersCard key={pro.id} p={pro}/>
             ))}
+            </div>
+            
         </div>
     
   );
