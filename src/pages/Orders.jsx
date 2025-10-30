@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import OrdersCard from "../Components/OrdersCard";
 
 export default function Orders() {
   const [orders, setOrders] = useState([]);
@@ -15,7 +16,8 @@ export default function Orders() {
             const product = products.find(p => p.id === item.productId);
             return {
               ...item,
-              productName: product ? product.name : "Unknown Product" 
+              productName: product ? product.name : "Unknown Product" ,
+              productImage: product? product.image : "no Image"
             };
           })
         }));
@@ -26,19 +28,11 @@ export default function Orders() {
   }, []);
 
   return (
-    <div>
-      {orders.map(order => (
-        <div key={order.id} className="mb-4 border-b border-gray-400 pb-2">
-          <h3>Order ID: {order.id}</h3>
-          <ul>
-            {order.products.map(p => (
-              <li key={p.productId}>
-                {p.productName} — Qty: {p.quantity}
-              </li>
+        <div>
+            {orders.map(pro =>(
+                <OrdersCard key={pro.id} p={pro}/>
             ))}
-          </ul>
         </div>
-      ))}
-    </div>
+    
   );
 }
