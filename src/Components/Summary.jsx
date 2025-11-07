@@ -2,7 +2,7 @@
 export default function Summary(){
     return(
         <>
-            <div class="border border-zinc-300 rounded-2xl p-5 w-[450px]">
+            <div class="border border-zinc-300 rounded-2xl p-5 w-[400px] mt-4">
             <div class="font-bold text-[20px] mb-3">
               Payment Summary
             </div>

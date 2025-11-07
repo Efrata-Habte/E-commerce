@@ -32,17 +32,18 @@ export default function Checkout() {
 
   return (
     <>
-    <div className="grid grid-cols-[1fr_400px] items-start">
-      <div className="space-y-4">
-        {carts.map((c) => (
-        <CheckoutCard key={c.productId} cart={c} />
-        ))}
+      <div className="min-h-screen flex justify-center items-start py-10">
+        <div className="grid grid-cols-[1fr_800px] gap-5 max-w-[1150px] w-full">
+          <div className="space-y-4">
+            {carts.map((c) => (
+            <CheckoutCard key={c.productId} cart={c} />
+            ))}
+          </div>
+          <div className="self-start">
+            <Summary cart={carts} />
+          </div>
       </div>
-
-    <Summary cart={carts} />
-</div>
-
-      
+      </div>      
     </>
   );
 }

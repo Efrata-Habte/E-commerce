@@ -1,6 +1,6 @@
 export default function CheckoutCard({ cart }) {
   return (
-    <div className="border border-zinc-300 p-5 rounded-xl mb-3 mt-4 h-auto w-[650px] mx-auto">
+    <div className="border border-zinc-300 p-5 rounded-xl mb-3 mt-4 w-[700px]">
       <div className="text-green-600 font-bold text-[20px] mt-[5px] mb-5">
         Delivery date: Tuesday, June 21
       </div>
