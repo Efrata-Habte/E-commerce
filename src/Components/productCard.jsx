@@ -1,5 +1,17 @@
 
+import { useState } from 'react';
+import { useCart } from '../contexts/CartContext';
+
 export default function ProductCard({ p }) {
+  const [quantity, setQuantity] = useState(1);
+  const [added, setAdded] = useState(false);
+  const { addToCart } = useCart();
+
+  const handleAddToCart = () => {
+    addToCart(p.id, quantity);
+    setAdded(true);
+    setTimeout(() => setAdded(false), 2000);
+  };
   return (
     <div
       className="flex flex-col border border-gray-300 rounded-xl p-5 bg-white transition-all duration-300 hover:shadow-sd  hover:border-green-700"
@@ -7,7 +19,7 @@ export default function ProductCard({ p }) {
       <div className="flex justify-center items-center h-[180px] mb-4">
         <img
           className="max-w-full max-h-full rounded-md object-contain"
-          src={p.image}
+          src={"/" + p.image}
           alt={p.name}
         />
       </div>
@@ -30,7 +42,11 @@ export default function ProductCard({ p }) {
       </div>
 
       <div className="mb-2 flex justify-center">
-        <select className="border border-gray-300 rounded-md px-2 py-1 focus:outline-none focus:ring-2 focus:ring-green-800">
+        <select
+          value={quantity}
+          onChange={(e) => setQuantity(Number(e.target.value))}
+          className="border border-gray-300 rounded-md px-2 py-1 focus:outline-none focus:ring-2 focus:ring-green-800"
+        >
           {[...Array(10)].map((_, i) => (
             <option key={i + 1} value={i + 1}>
               {i + 1}
@@ -39,7 +55,7 @@ export default function ProductCard({ p }) {
         </select>
       </div>
 
-      <div className="text-green-700 text-base flex items-center justify-center mb-1 opacity-0">
+      <div className={`text-green-700 text-base flex items-center justify-center mb-1 transition-opacity duration-200 ${added ? 'opacity-100' : 'opacity-0'}`}>
         <img
           src="/images/icons/checkmark.png"
           alt="added"
@@ -48,7 +64,10 @@ export default function ProductCard({ p }) {
         Added
       </div>
 
-      <button className="w-full mt-auto bg-green-900 hover:bg-green-800 text-white py-2 rounded-lg transition-all duration-200">
+      <button
+        onClick={handleAddToCart}
+        className="w-full mt-auto bg-green-900 hover:bg-green-800 text-white py-2 rounded-lg transition-all duration-200"
+      >
         Add to Cart
       </button>
     </div>

@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
+import { useCart } from "../contexts/CartContext";
 
 export default function Header({ children }) {
+  const { cart, searchQuery, setSearchQuery } = useCart();
   return (
     <>
       <div className="bg-green-900 flex items-center justify-between  px-[15px] inset-0 text-white fixed h-16">
@@ -12,9 +14,9 @@ export default function Header({ children }) {
         </div>
 
         <div className="flex-1 max-w[850px] ml-20 flex bg-white rounded-[10px]">
-            <input className="flex-1 w-0 text-base h-[38px] px-4 rounded-l-md rounded-r-none text-black" type="text" placeholder="Search" />
+            <input value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} className="flex-1 w-0 text-base h-[38px] px-4 rounded-l-md rounded-r-none text-black" type="text" placeholder="Search" />
             <button className="bg-emerald-200 w-[45px] h-10 rounded-r-md shrink-0">
-            <img className="h-5 ml-2.5 mt-[3px]" src="images/icons/search-icon.png" />
+            <img className="h-5 ml-2.5 mt-[3px]" src="/images/icons/search-icon.png" />
             </button>
       </div>
 
@@ -26,7 +28,7 @@ export default function Header({ children }) {
 
             <Link className="text-white flex items-center relative px-[9.5px] py-1.5 rounded-sm cursor-pointer no-underline border-solid hover:border border-white" to="/checkout">
             <img className="w-[38px]" src="/images/icons/cart-icon.png" />
-            <div className="text-green-900 text-base font-bold absolute top-[4.5px] right-[50px] w-[26px] text-center">3</div>
+            <div className="text-green-900 text-base font-bold absolute top-[4.5px] right-[50px] w-[26px] text-center">{cart.length}</div>
             <div className="ml-[5px] text-base font-bold">Cart</div>
             </Link>
       </div>
